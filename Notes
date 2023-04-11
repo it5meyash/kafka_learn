@@ -1,0 +1,64 @@
+Broker -
+        A broker is a server or node in the Kafka cluster that is responsible for storing and processing data. 
+        Brokers receive messages from producers, store them in partitions within topics, and make the messages available to consumers. 
+        Each broker in a Kafka cluster is identified by a unique ID and can communicate with any other broker in the cluster.
+       
+Topics -
+        Messages are organized and stored in topics, and each message belongs to a specific topic. 
+        A topic in Kafka can have one or more partitions, which allows for parallel processing and scalability. 
+        Message can have multiple topics.
+        Partitions allow for multiple consumers to read from a topic simultaneously, making it possible to process high volumes of data in real-time.
+        When a message is produced by a producer, it is sent to a specific topic, and then it is stored in one of the partitions within that topic. Each partition is stored on a specific broker in the Kafka cluster.
+        Topics in Kafka can be created dynamically or configured in advance, depending on the use case. 
+       
+       
+Difference b/w topics and broker -
+        Brokers are the servers that store and process data, while topics are the named feeds or categories to which messages are published and stored. 
+        Brokers are responsible for managing topics, partitions, and messages, while topics are used to organize and manage messages within the Kafka system.
+        Kafka cluster with multiple brokers, it is possible to create the same topic on different brokers.
+ 
+Partitions -
+        Partitions are the unit of parallelism, fault-tolerance and scalability for data processing.
+        When a message is produced to a topic, it is assigned to a specific partition based on the partitioning strategy. 
+        Producer can send a message with or without key.
+        Kafka supports several built-in partitioning strategies, such as round-robin, key-based, and custom partitioners. 
+              Round-robin -> Round-robin partitioning distributes messages across all partitions in a topic evenly, ensuring that each partition receives an equal share of messages.
+                             It doen't have key value
+              key-based -> Uses a message key to determine the partition to which a message should be sent. 
+        This method of partitioning ensures that all messages with the same key are sent to the same partition, allowing related messages to be grouped together.
+        Each partition is stored on a separate broker in the Kafka cluster. This allows Kafka to scale horizontally by adding more brokers to the cluster.
+        When a consumer subscribes to a topic, it reads messages from one or more partitions of the topic. This allows multiple consumers to process messages from the same topic in parallel.
+        message === record
+        reading of the messages is in old to new manner.
+        messages within a partition are guaranteed to be ordered based on their offset, which is a monotonically increasing sequence number that identifies the position of the message within the partition.
+ 
+Offset - 
+        Offset is a unique identifier that is assigned to each message within a partition. 
+        The offset is a monotonically increasing sequence number that identifies the position of the message within the partition. 
+        The first message in a partition is assigned an offset of 0, and subsequent messages are assigned incrementing offsets.
+        Offsets are important because they provide a way to track the progress of consumers as they read messages from a partition.  
+ 
+Replication - 
+        Replication is a feature that provides fault tolerance and high availability by replicating data across multiple brokers in a cluster.
+        Each partition in the topic is replicated across multiple brokers, with one broker designated as the leader and the other brokers acting as followers.
+        Replication in Kafka ensures that data is available even in the event of hardware failures, network partitions, or other issues that could cause a broker to become unavailable. 
+        There should be minimum 3 replica of one partition available . or we can adjust it
+ 
+ Consumer -       
+        Consumer is an application or process that reads data from a Kafka topic.There can be multiple consumers.
+        Kafka provides two types of consumers: 
+              The high-level consumer is a built-in consumer that provides an abstraction layer over the low-level consumer API. 
+              It provides automatic load balancing and failover, making it easier to write Kafka consumers.
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
