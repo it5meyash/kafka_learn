@@ -1,4 +1,5 @@
 Kafka - 
+
         Kafka is a messaging queue for real time data process.
         Kafka is designed to handle real-time data streams
         A popular tool for building data pipelines and processing large-scale data streams.
@@ -6,17 +7,20 @@ Kafka -
         It is work on pub-sub model.
 
 Producer - 
+
         Producer is a client application that is responsible for writing data to a Kafka topic.
         The producer can choose to send messages synchronously or asynchronously and can configure various settings such as the compression type, message format, and message key.
         Producers can also specify the partition key for each message, which determines the partition to which the message will be written.
         
 Broker -
+
         A broker is a server or node in the Kafka cluster that is responsible for storing and processing data. 
         Brokers receive messages from producers, store them in partitions within topics, and make the messages available to consumers. 
         Each broker in a Kafka cluster is identified by a unique ID and can communicate with any other broker in the cluster.
         Kafka brokers are designed to be highly scalable and fault-tolerant.
        
 Topics -
+
         Messages are organized and stored in topics, and each message belongs to a specific topic. 
         A topic in Kafka can have one or more partitions, which allows for parallel processing and scalability. 
         Message can have multiple topics.
@@ -26,11 +30,13 @@ Topics -
        
        
 Difference b/w topics and broker -
+
         Brokers are the servers that store and process data, while topics are the named feeds or categories to which messages are published and stored. 
         Brokers are responsible for managing topics, partitions, and messages, while topics are used to organize and manage messages within the Kafka system.
         Kafka cluster with multiple brokers, it is possible to create the same topic on different brokers.
  
 Partitions -
+
         Partitions are the unit of parallelism, fault-tolerance and scalability for data processing.
         When a message is produced to a topic, it is assigned to a specific partition based on the partitioning strategy. 
         Producer can send a message with or without key.
@@ -46,24 +52,34 @@ Partitions -
         messages within a partition are guaranteed to be ordered based on their offset, which is a monotonically increasing sequence number that identifies the position of the message within the partition.
  
 Offset - 
+
         Offset is a unique identifier that is assigned to each message within a partition. 
         The offset is a monotonically increasing sequence number that identifies the position of the message within the partition. 
         The first message in a partition is assigned an offset of 0, and subsequent messages are assigned incrementing offsets.
         Offsets are important because they provide a way to track the progress of consumers as they read messages from a partition.  
  
 Replication - 
+
         Replication is a feature that provides fault tolerance and high availability by replicating data across multiple brokers in a cluster.
         Each partition in the topic is replicated across multiple brokers, with one broker designated as the leader and the other brokers acting as followers.
         Replication in Kafka ensures that data is available even in the event of hardware failures, network partitions, or other issues that could cause a broker to become unavailable. 
         There should be minimum 3 replica of one partition available . or we can adjust it
  
- Consumer -       
-        Consumer is an application or process that reads data from a Kafka topic.There can be multiple consumers.
+ Consumer -   
+ 
+        Consumer is an application or process that reads data from a Kafka topic.There can be multiple consumers and can rad simultaneously.
+        When a consumer subscribes to a topic, it specifies the partitions it wants to read from, as well as the starting offset for each partition.
         Kafka provides two types of consumers: 
               The high-level consumer is a built-in consumer that provides an abstraction layer over the low-level consumer API. 
               It provides automatic load balancing and failover, making it easier to write Kafka consumers.
-    
-    
+              The low-level consumer API provides more control over the consumer, allowing for more fine-grained control over the reading of messages from Kafka topics.
+        Consumer need to do the offset commit.
+        Latest (read data from each partition from current offset)
+        Earliest (read for each partition from start offset )
+        
+ Parallelism -
+        
+                    
     
     
     
