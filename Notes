@@ -76,9 +76,18 @@ Replication -
         Consumer need to do the offset commit.
         Latest (read data from each partition from current offset)
         Earliest (read for each partition from start offset )
-        
+        Each partition in a Kafka topic can be consumed by one consumer in a consumer group at a time. Therefore, the maximum number of consumers that can be created for a topic is limited by the number of partitions in the topic.
+        we can consume a single partition using multiple consumer group.
+ 
  Parallelism -
-        
+        Key feature that enable high performance and scalability 
+        Kafka supports parallelism at various levels, including producer parallelism, consumer parallelism, and processing parallelism.
+        Producer parallelism in Kafka allows multiple producers to write data to different partitions of a topic simultaneously.
+        Consumer parallelism in Kafka allows multiple consumer instances to read data from a topic in parallel
+               , which enables high throughput and reduces latency. Consumers can be organized into consumer groups
+               , where each group has one or more consumers that read from a subset of partitions in the topic. 
+               This approach enables multiple consumers to work on different parts of the data stream in parallel, which improves performance and scalability.
+        At a time only 1 consumer of consumer group can read a data from specific partition.
                     
     
     
