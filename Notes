@@ -5,6 +5,7 @@ Kafka -
         A popular tool for building data pipelines and processing large-scale data streams.
         It is not a database but it is a just a system or queue where we're storing data for some time.
         It is work on pub-sub model.
+        Kafka, the metadata about the Kafka cluster and its topics is stored in ZooKeeper
 
 Producer - 
 
@@ -80,6 +81,7 @@ Replication -
         we can consume a single partition using multiple consumer group.
  
  Parallelism -
+ 
         Key feature that enable high performance and scalability 
         Kafka supports parallelism at various levels, including producer parallelism, consumer parallelism, and processing parallelism.
         Producer parallelism in Kafka allows multiple producers to write data to different partitions of a topic simultaneously.
@@ -88,7 +90,40 @@ Replication -
                , where each group has one or more consumers that read from a subset of partitions in the topic. 
                This approach enables multiple consumers to work on different parts of the data stream in parallel, which improves performance and scalability.
         At a time only 1 consumer of consumer group can read a data from specific partition.
-                    
+        
+ Commits - 
+ 
+        The act of acknowledging that a consumer has successfully processed a batch of messages from a Kafka topic partition.
+        There are two types of commits in Kafka:
+                Synchronous commit: The consumer blocks until the broker confirms that the message has been committed. 
+                                    This ensures that messages are not lost in the event of a failure but can have a performance impact since it may cause a delay in processing messages.
+                Asynchronous commit: The consumer sends the commit request to the broker without waiting for a response. 
+                                     This approach is faster but can result in message loss if the consumer fails before the commit request is sent or if the commit request fails.
+        Two types of commit modes:                                 
+                Automatic commit: The Kafka consumer automatically commits the offset after processing a batch of messages,consumer has less control over when offsets are committed.
+                Manual commit: The Kafka consumer has full control over when offsets are committed, This mode allows for more fine-grained control over offset management.
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
